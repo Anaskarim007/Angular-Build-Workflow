@@ -1,21 +1,26 @@
-name: Buld My Angular App
+name: Build My Angular App
 
 on:
- push: 
-  branches: [ main ]
+  push:
+    branches: [main]
 
 jobs:
   build-angular-app:
-   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-   steps:
-     - uses: actions/checkout@v4.2.2
-     - name: Setup Node JS
-       uses: actions/setup-node@v6.5.0
-       with:
-        node-version: 22.x
-     - name: Install Dependencies
-       run: npm install
-     - name: Build Angular App
-       run: npm run build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Angular App
+        run: npm run build
   
