@@ -1,0 +1,17 @@
+<div class="app-shell">
+  <nav class="topbar">
+    <a routerLink="/" class="brand">
+      <span class="brand__mark">MF</span>
+      <span class="brand__name">MoodFlix</span>
+    </a>
+    <a routerLink="/" class="topbar__link">Moods</a>
+  </nav>
+
+  <main class="app-main">
+    <router-outlet />
+  </main>
+
+  <footer class="footer">
+    <p>MoodFlix · {{ year }} · A mood-driven recommendation experiment.</p>
+  </footer>
+</div>
