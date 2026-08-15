@@ -1,0 +1,40 @@
+<header class="discover-header" [style.--accent]="selectedMood?.accent ?? '#ff5d8f'">
+  <div class="discover-header__text">
+    <p class="discover-header__eyebrow">
+      {{ selectedMood?.emoji }} {{ selectedMood?.label }} picks
+    </p>
+    <h1 class="discover-header__title">Discover</h1>
+    <p class="discover-header__subtitle">
+      More ways to match your {{ selectedMood?.label }} mood.
+    </p>
+  </div>
+  <button type="button" class="back-btn" (click)="backToMoods()">
+    <span class="back-btn__arrow">←</span>
+    Back to Mood Selection
+  </button>
+</header>
+
+<div class="cards">
+  @for (rec of recommendations; track rec.id) {
+    <article class="card" [style.--accent]="selectedMood?.accent ?? '#ff5d8f'">
+      <div class="card__top">
+        <span class="card__type">{{ rec.type }}</span>
+        <span class="card__rating">★ {{ rec.rating }}</span>
+      </div>
+      <h3 class="card__title">{{ rec.title }}</h3>
+      <p class="card__genre">{{ rec.genre }}</p>
+      <p class="card__desc">{{ rec.description }}</p>
+      <div class="card__why">
+        <span class="card__why-label">Why you'll like it</span>
+        <p>{{ rec.why }}</p>
+      </div>
+    </article>
+  } @empty {
+    <div class="empty">
+      <p>No mood selected yet.</p>
+      <button type="button" class="back-btn" (click)="backToMoods()">
+        Choose a mood
+      </button>
+    </div>
+  }
+</div>

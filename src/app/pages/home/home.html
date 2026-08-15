@@ -1,0 +1,67 @@
+<section class="hero">
+  <div class="hero__content">
+    <p class="hero__eyebrow">MoodFlix</p>
+    <h1 class="hero__title">What are you feeling tonight?</h1>
+    <p class="hero__subtitle">
+      Pick a mood and we'll line up a film and a track that match it.
+    </p>
+  </div>
+</section>
+
+<section class="moods" aria-label="Choose your mood">
+  @for (mood of moods; track mood.id) {
+    <button
+      type="button"
+      class="mood-chip"
+      [class.is-active]="selectedMood?.id === mood.id"
+      [style.--accent]="mood.accent"
+      (click)="selectMood(mood.id)"
+    >
+      <span class="mood-chip__emoji">{{ mood.emoji }}</span>
+      <span class="mood-chip__label">{{ mood.label }}</span>
+      <span class="mood-chip__tagline">{{ mood.tagline }}</span>
+    </button>
+  }
+</section>
+
+@if (selectedMood; as mood) {
+  <section class="spotlight" [style.--accent]="mood.accent">
+    <header class="spotlight__head">
+      <span class="spotlight__mood">{{ mood.emoji }} {{ mood.label }}</span>
+      <h2 class="spotlight__heading">Tonight's pick for you</h2>
+    </header>
+
+    <div class="spotlight__grid">
+      @if (featured; as movie) {
+        <article class="spotlight-card spotlight-card--feature">
+          <span class="spotlight-card__type">{{ movie.type }}</span>
+          <h3 class="spotlight-card__title">{{ movie.title }}</h3>
+          <div class="spotlight-card__meta">
+            <span>{{ movie.genre }}</span>
+            <span class="dot">•</span>
+            <span class="rating">★ {{ movie.rating }}</span>
+          </div>
+          <p class="spotlight-card__why">{{ movie.why }}</p>
+        </article>
+      }
+
+      @if (song; as track) {
+        <article class="spotlight-card spotlight-card--song">
+          <span class="spotlight-card__type">{{ track.type }}</span>
+          <h3 class="spotlight-card__title">{{ track.title }}</h3>
+          <div class="spotlight-card__meta">
+            <span>{{ track.genre }}</span>
+            <span class="dot">•</span>
+            <span class="rating">★ {{ track.rating }}</span>
+          </div>
+          <p class="spotlight-card__why">{{ track.why }}</p>
+        </article>
+      }
+    </div>
+
+    <button type="button" class="discover-btn" (click)="goToDiscover()">
+      Discover More
+      <span class="discover-btn__arrow">→</span>
+    </button>
+  </section>
+}
