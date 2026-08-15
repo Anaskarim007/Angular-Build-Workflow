@@ -1,0 +1,204 @@
+:host {
+  display: block;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 5vw, 4rem);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  padding: clamp(2.5rem, 8vw, 5.5rem) 0 clamp(1.5rem, 4vw, 2.5rem);
+
+  &__eyebrow {
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--accent, #ff5d8f);
+    margin: 0 0 1rem;
+    font-weight: 600;
+  }
+
+  &__title {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    line-height: 1.05;
+    margin: 0 0 1rem;
+    font-weight: 800;
+    background: linear-gradient(180deg, #fff 0%, #c9c4d6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &__subtitle {
+    max-width: 34rem;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+  }
+}
+
+.moods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 2.5rem 0 3.5rem;
+}
+
+.mood-chip {
+  --accent: #ff5d8f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.4rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.3s ease, background 0.3s ease;
+  backdrop-filter: blur(6px);
+
+  &__emoji {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  &__label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  &__tagline {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+    box-shadow: 0 12px 30px -12px color-mix(in srgb, var(--accent) 70%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  &.is-active {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    box-shadow: 0 0 0 1px var(--accent), 0 14px 36px -14px var(--accent);
+  }
+}
+
+.spotlight {
+  --accent: #ff5d8f;
+  animation: fade-up 0.5s ease both;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.75rem;
+    text-align: center;
+  }
+  &__mood {
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  &__heading {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    margin: 0;
+    font-weight: 700;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.25rem;
+    @media (max-width: 720px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.spotlight-card {
+  position: relative;
+  padding: 1.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    rgba(10, 10, 18, 0.6);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -18px color-mix(in srgb, var(--accent) 80%, transparent);
+  }
+
+  &__type {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  &__title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin: 0 0 0.6rem;
+    font-weight: 700;
+  }
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+
+    .rating { color: #ffd166; font-weight: 600; }
+    .dot { opacity: 0.5; }
+  }
+  &__why {
+    margin: 0;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+}
+
+.discover-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 2rem auto 0;
+  padding: 0.95rem 2rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #0a0a12;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.2s ease;
+
+  &__arrow {
+    transition: transform 0.25s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -10px var(--accent);
+    .discover-btn__arrow { transform: translateX(4px); }
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
