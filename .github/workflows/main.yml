@@ -17,10 +17,12 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: project/package-lock.json
 
       - name: Install Dependencies
         run: npm ci
+        working-directory: ./project
 
       - name: Build Angular App
         run: npm run build
-  
+        working-directory: ./project
